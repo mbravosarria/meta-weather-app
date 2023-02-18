@@ -1,5 +1,5 @@
 import React from "react";
-import { TextProps } from "@/configurations/interfaces";
+import { TextProps } from "@/interfaces/interfaces";
 
 function P({ children, ...rest }: TextProps) {
   return <p {...rest}>{children}</p>;

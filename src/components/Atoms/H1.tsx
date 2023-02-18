@@ -1,5 +1,5 @@
 import React from "react";
-import { TextProps } from "@/configurations/interfaces";
+import { TextProps } from "@/interfaces/interfaces";
 import { Acme } from "@next/font/google";
 
 function H1({ children, ...rest }: TextProps) {

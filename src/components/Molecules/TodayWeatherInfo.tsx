@@ -3,26 +3,56 @@ import Img from "@/components/Atoms/Img";
 import P from "@/components/Atoms/P";
 import nodataImg from "../../../public/svg/nodata.svg";
 import locationIcon from "../../../public/svg/location.svg";
+import { TodayWeatherInfoProps } from "@/interfaces/interfaces";
+import SkeletonMui from "../Atoms/SkeletonMui";
 
-function TodayWeatherInfo() {
+function TodayWeatherInfo({ loading, data }: TodayWeatherInfoProps) {
   return (
     <div className="flex h-full flex-col items-center justify-between">
-      <Img className="relative h-52 w-52" src={nodataImg} alt="No Data Icon" />
+      {loading ? (
+        <SkeletonMui variant="circular" width={200} height={200} />
+      ) : (
+        <Img
+          className="relative h-52 w-52"
+          src={data ? `/icons/${data[0]?.weather.icon}.png` : nodataImg}
+          alt="No Data Icon"
+        />
+      )}
       <div className="flex flex-row items-end">
-        <P className="text-8xl font-bold">15</P>
-        <P className="text-4xl font-bold text-gray">°C</P>
+        {loading ? (
+          <SkeletonMui variant="rectangular" width={100} height={100} />
+        ) : (
+          <>
+            <P className="text-8xl font-bold">{data ? data[0].temp : "--"}</P>
+            <P className="text-4xl font-bold text-gray">°C</P>
+          </>
+        )}
       </div>
-      <P className="text-4xl font-bold text-gray">Shower</P>
+      {loading ? (
+        <SkeletonMui variant="rectangular" width={150} height={40} />
+      ) : (
+        <P className="text-4xl font-bold text-gray">
+          {data ? data[0].weather.description : "---- ----"}
+        </P>
+      )}
       <div className="flex flex-col items-center space-y-4 text-gray">
-        <P>Today - Fri, 5 Jun</P>
-        <div className="flex flex-row items-center space-x-1">
-          <Img
-            className="relative h-4 w-4"
-            src={locationIcon}
-            alt="Location Icon"
-          />
-          <P>Helsinki</P>
-        </div>
+        {loading ? (
+          <SkeletonMui variant="rectangular" width={120} height={20} />
+        ) : (
+          <P>Today - Fri, 5 Jun</P>
+        )}
+        {loading ? (
+          <SkeletonMui variant="rectangular" width={100} height={20} />
+        ) : (
+          <div className="flex flex-row items-center space-x-1">
+            <Img
+              className="relative h-4 w-4"
+              src={locationIcon}
+              alt="Location Icon"
+            />
+            <P>{data ? data[0].city_name : "----"}</P>
+          </div>
+        )}
       </div>
     </div>
   );

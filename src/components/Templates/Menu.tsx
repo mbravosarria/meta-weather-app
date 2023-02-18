@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { Acme } from "@next/font/google";
+import { MenuProps } from "@/interfaces/interfaces";
 
 const acme = Acme({
   subsets: ["latin"],
@@ -14,7 +15,7 @@ const MenuSearchPlace = dynamic(
   () => import("@/components/Organisms/MenuSearchPlace")
 );
 
-function Menu() {
+function Menu({ loading, data }: MenuProps) {
   const [searching, setSearching] = useState(false);
 
   return (
@@ -23,7 +24,7 @@ function Menu() {
         {searching ? (
           <MenuSearchPlace {...{ setSearching }} />
         ) : (
-          <MenuWeatherInfo {...{ setSearching }} />
+          <MenuWeatherInfo {...{ setSearching, loading, data }} />
         )}
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@/components/Atoms/Button";
 import Img from "@/components/Atoms/Img";
-import { SearchPlaceActionsProps } from "@/configurations/interfaces";
+import { SearchPlaceActionsProps } from "@/interfaces/interfaces";
 
 import currentLocationIcon from "../../../public/svg/location-current-solid.svg";
 

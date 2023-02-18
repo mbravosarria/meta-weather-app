@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import P from "@/components/Atoms/P";
 import Img from "@/components/Atoms/Img";
+import { SearchItemProps } from "@/interfaces/interfaces";
 
 import rightArrowIcon from "../../../public/svg/right-arrow.svg";
 
-function SearchItem() {
+function SearchItem({ text }: SearchItemProps) {
   const [hover, setHover] = useState(false);
 
   return (
@@ -13,7 +14,7 @@ function SearchItem() {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <P>London</P>
+      <P>{text}</P>
       {hover && (
         <Img
           className="relative h-4 w-4"

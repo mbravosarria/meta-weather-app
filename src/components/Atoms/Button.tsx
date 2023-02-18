@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonProps } from "@/configurations/interfaces";
+import { ButtonProps } from "@/interfaces/interfaces";
 
 function Button({ children, ...rest }: ButtonProps) {
   return <button {...rest}>{children}</button>;

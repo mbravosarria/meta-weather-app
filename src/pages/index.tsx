@@ -1,10 +1,20 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
+import { useState } from "react";
+import { useTodayWeather } from "@/data/weather-fetch-resources";
 
 const Menu = dynamic(() => import("@/components/Templates/Menu"));
 const MainContent = dynamic(() => import("@/components/Templates/MainContent"));
 
-export default function Home() {
+function Home() {
+  const [city, setCity] = useState("4330236");
+
+  const { currentWeather, currentWeatherIsLoading, currentWeatherError } =
+    useTodayWeather({
+      cityId: city,
+      key: process.env.NEXT_PUBLIC_API_KEY || "",
+    });
+
   return (
     <>
       <Head>
@@ -16,13 +26,18 @@ export default function Home() {
       <main className="h-screen bg-purple-dark text-white">
         <div className="flex flex-col lg:flex-row">
           <div className="lg:w-1/4">
-            <Menu />
+            <Menu loading={currentWeatherIsLoading} data={currentWeather} />
           </div>
           <div className="lg:w-3/4">
-            <MainContent />
+            <MainContent
+              loading={currentWeatherIsLoading}
+              todayData={currentWeather}
+            />
           </div>
         </div>
       </main>
     </>
   );
 }
+
+export default Home;

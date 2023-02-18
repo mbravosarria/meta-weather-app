@@ -3,18 +3,29 @@ import P from "@/components/Atoms/P";
 import WindStatus from "@/components/Molecules/WindStatus";
 import Humidity from "@/components/Molecules/Humidity";
 import CommonHighlightItem from "@/components/Molecules/CommonHighlightItem";
+import { TodayHighlightsProps } from "@/interfaces/interfaces";
 
-function TodayHighlights() {
+function TodayHighlights({ loading, data }: TodayHighlightsProps) {
   return (
     <div className="flex flex-col space-y-3 xl:space-y-5">
       <P className="text-xl font-bold xl:text-2xl">Today&apos;s Highlights</P>
       <div className="flex flex-col justify-between space-y-3 lg:flex-row lg:space-y-0">
-        <WindStatus />
-        <Humidity />
+        <WindStatus loading={loading} data={data} />
+        <Humidity loading={loading} data={data} />
       </div>
       <div className="flex flex-col justify-between space-y-3 lg:flex-row lg:space-y-0">
-        <CommonHighlightItem title="Visibility" value="6,4" unit="miles" />
-        <CommonHighlightItem title="Air Pressure" value="998" unit="mb" />
+        <CommonHighlightItem
+          title="Visibility"
+          value={data ? data[0].vis : "--"}
+          unit="km"
+          loading={loading}
+        />
+        <CommonHighlightItem
+          title="Air Pressure"
+          value={data ? data[0].pres : "----"}
+          unit="mb"
+          loading={loading}
+        />
       </div>
     </div>
   );

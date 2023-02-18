@@ -1,5 +1,5 @@
 import React from "react";
-import { PercentBarProps } from "@/configurations/interfaces";
+import { PercentBarProps } from "@/interfaces/interfaces";
 
 function PercentBar({ percent }: PercentBarProps) {
   return (
