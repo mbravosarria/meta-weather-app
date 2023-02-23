@@ -4,21 +4,27 @@ import Img from "@/components/Atoms/Img";
 import nodataIcon from "../../../public/svg/nodata.svg";
 import { WeekWeatherItemProps } from "@/interfaces/interfaces";
 import SkeletonMui from "../Atoms/SkeletonMui";
+import { useUnit } from "@/context/unit/unit.context";
+import { stringToDate } from "@/helper/date";
 
-function WeekWeatherItem({ loading }: WeekWeatherItemProps) {
+function WeekWeatherItem({ loading, data }: WeekWeatherItemProps) {
+  const { unit } = useUnit();
+
   return (
     <div className="mb-8 flex flex-col items-center space-y-5 bg-purple py-2 px-6 lg:mb-0 lg:w-1/6">
       {loading ? (
         <SkeletonMui variant="rectangular" width={120} height={30} />
       ) : (
-        <P className="text-xl font-bold">Tomorrow</P>
+        <P className="text-lg font-bold">
+          {data ? stringToDate(data?.datetime) : "---, -- ---"}
+        </P>
       )}
       {loading ? (
         <SkeletonMui variant="circular" width={80} height={80} />
       ) : (
         <Img
           className="relative h-20 w-20"
-          src={nodataIcon}
+          src={data ? `/icons/${data?.weather.icon}.png` : nodataIcon}
           alt="Weather Icon"
         />
       )}
@@ -27,8 +33,12 @@ function WeekWeatherItem({ loading }: WeekWeatherItemProps) {
           <SkeletonMui variant="rectangular" width={140} height={30} />
         ) : (
           <>
-            <P className="text-lg">16°C</P>
-            <P className="text-lg text-gray">11°C</P>
+            <P className="text-lg">
+              {data ? data?.max_temp : "--"}°{unit == "" ? "C" : "F"}
+            </P>
+            <P className="text-lg text-gray">
+              {data ? data?.min_temp : "--"}°{unit == "" ? "C" : "F"}
+            </P>
           </>
         )}
       </div>

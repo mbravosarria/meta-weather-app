@@ -5,8 +5,12 @@ import nodataImg from "../../../public/svg/nodata.svg";
 import locationIcon from "../../../public/svg/location.svg";
 import { TodayWeatherInfoProps } from "@/interfaces/interfaces";
 import SkeletonMui from "../Atoms/SkeletonMui";
+import { useUnit } from "@/context/unit/unit.context";
+import { stringToDate } from "@/helper/date";
 
 function TodayWeatherInfo({ loading, data }: TodayWeatherInfoProps) {
+  const { unit } = useUnit();
+
   return (
     <div className="flex h-full flex-col items-center justify-between">
       {loading ? (
@@ -24,7 +28,9 @@ function TodayWeatherInfo({ loading, data }: TodayWeatherInfoProps) {
         ) : (
           <>
             <P className="text-8xl font-bold">{data ? data[0].temp : "--"}</P>
-            <P className="text-4xl font-bold text-gray">°C</P>
+            <P className="text-4xl font-bold text-gray">
+              °{unit == "" ? "C" : "F"}
+            </P>
           </>
         )}
       </div>
@@ -39,7 +45,12 @@ function TodayWeatherInfo({ loading, data }: TodayWeatherInfoProps) {
         {loading ? (
           <SkeletonMui variant="rectangular" width={120} height={20} />
         ) : (
-          <P>Today - Fri, 5 Jun</P>
+          <P>
+            Today -{" "}
+            {data
+              ? stringToDate(data[0].datetime.split(":")[0])
+              : "---, --- --"}
+          </P>
         )}
         {loading ? (
           <SkeletonMui variant="rectangular" width={100} height={20} />

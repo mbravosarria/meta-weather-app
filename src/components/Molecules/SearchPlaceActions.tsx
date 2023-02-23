@@ -14,13 +14,6 @@ function SearchPlaceActions({ setSearching }: SearchPlaceActionsProps) {
       >
         Search for places
       </Button>
-      <Button className="flex justify-center rounded-full bg-gray p-[0.3rem] shadow-lg">
-        <Img
-          className="relative h-6 w-6"
-          src={currentLocationIcon}
-          alt="Current location icon"
-        />
-      </Button>
     </div>
   );
 }

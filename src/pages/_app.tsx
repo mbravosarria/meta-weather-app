@@ -1,3 +1,5 @@
+import { CityProvider } from "@/context/city/city.context";
+import { UnitProvider } from "@/context/unit/unit.context";
 import "@/styles/globals.scss";
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -8,8 +10,12 @@ const queryClient = new QueryClient();
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
-      <ReactQueryDevtools initialIsOpen={false} />
+      <CityProvider>
+        <UnitProvider>
+          <Component {...pageProps} />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </UnitProvider>
+      </CityProvider>
     </QueryClientProvider>
   );
 }

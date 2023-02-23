@@ -4,12 +4,6 @@ import Input from "@/components/Atoms/Input";
 import Button from "@/components/Atoms/Button";
 import { AxiosLocalInstance } from "@/configurations/axios";
 import { SearchFormProps } from "@/interfaces/interfaces";
-import { Acme } from "@next/font/google";
-
-const acme = Acme({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 import closeIcon from "../../../public/svg/close.svg";
 import searchIcon from "../../../public/svg/search.svg";

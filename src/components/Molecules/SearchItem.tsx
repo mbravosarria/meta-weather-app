@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import P from "@/components/Atoms/P";
 import Img from "@/components/Atoms/Img";
 import { SearchItemProps } from "@/interfaces/interfaces";
+import { useCity } from "@/context/city/city.context";
 
 import rightArrowIcon from "../../../public/svg/right-arrow.svg";
 
-function SearchItem({ text }: SearchItemProps) {
+function SearchItem({ text, code, setSearching }: SearchItemProps) {
+  const { setCity } = useCity();
   const [hover, setHover] = useState(false);
 
   return (
@@ -13,6 +15,10 @@ function SearchItem({ text }: SearchItemProps) {
       className="flex flex-row items-center justify-between border border-purple p-4 hover:cursor-pointer hover:border-gray"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      onClick={() => {
+        setCity({ code });
+        setSearching && setSearching(false);
+      }}
     >
       <P>{text}</P>
       {hover && (

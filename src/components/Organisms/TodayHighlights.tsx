@@ -4,8 +4,11 @@ import WindStatus from "@/components/Molecules/WindStatus";
 import Humidity from "@/components/Molecules/Humidity";
 import CommonHighlightItem from "@/components/Molecules/CommonHighlightItem";
 import { TodayHighlightsProps } from "@/interfaces/interfaces";
+import { useUnit } from "@/context/unit/unit.context";
 
 function TodayHighlights({ loading, data }: TodayHighlightsProps) {
+  const { unit } = useUnit();
+
   return (
     <div className="flex flex-col space-y-3 xl:space-y-5">
       <P className="text-xl font-bold xl:text-2xl">Today&apos;s Highlights</P>
@@ -17,7 +20,7 @@ function TodayHighlights({ loading, data }: TodayHighlightsProps) {
         <CommonHighlightItem
           title="Visibility"
           value={data ? data[0].vis : "--"}
-          unit="km"
+          unit={unit == "" ? "km" : "miles"}
           loading={loading}
         />
         <CommonHighlightItem

@@ -42,10 +42,13 @@ export interface SearchPlaceActionsProps {
 
 export interface WeekWeatherItemProps {
   loading: boolean;
+  data: any;
 }
 
 export interface SearchItemProps {
   text: string;
+  code: string;
+  setSearching?: Function;
 }
 
 export interface TodayWeatherInfoProps {
@@ -89,6 +92,7 @@ export interface TodayHighlightsProps {
 
 export interface WeekWeatherProps {
   loading: boolean;
+  data: any;
 }
 
 export interface MenuSearchPlaceProps {
@@ -103,8 +107,10 @@ export interface MenuProps {
 }
 
 export interface MainContextProps {
-  loading: boolean;
+  todayLoading: boolean;
   todayData: any;
+  dailyLoading: boolean;
+  dailyData: any;
 }
 
 // Data Model

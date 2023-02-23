@@ -1,18 +1,32 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { useTodayWeather } from "@/data/weather-fetch-resources";
+import {
+  useTodayWeather,
+  useDailyWeather,
+} from "@/data/weather-fetch-resources";
+import { useCity } from "@/context/city/city.context";
+import { useUnit } from "@/context/unit/unit.context";
 
 const Menu = dynamic(() => import("@/components/Templates/Menu"));
 const MainContent = dynamic(() => import("@/components/Templates/MainContent"));
 
 function Home() {
-  const [city, setCity] = useState("4330236");
+  const { code } = useCity();
+  const { unit } = useUnit();
 
   const { currentWeather, currentWeatherIsLoading, currentWeatherError } =
     useTodayWeather({
-      cityId: city,
+      cityId: code,
       key: process.env.NEXT_PUBLIC_API_KEY || "",
+      units: unit,
+    });
+
+  const { dailyWeather, dailyWeatherIsLoading, dailyWeatherError } =
+    useDailyWeather({
+      cityId: code,
+      key: process.env.NEXT_PUBLIC_API_KEY || "",
+      units: unit,
     });
 
   return (
@@ -23,6 +37,7 @@ function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/svg/nodata.svg" />
       </Head>
+
       <main className="h-screen bg-purple-dark text-white">
         <div className="flex flex-col lg:flex-row">
           <div className="lg:w-1/4">
@@ -30,8 +45,10 @@ function Home() {
           </div>
           <div className="lg:w-3/4">
             <MainContent
-              loading={currentWeatherIsLoading}
+              todayLoading={currentWeatherIsLoading}
               todayData={currentWeather}
+              dailyLoading={dailyWeatherIsLoading}
+              dailyData={dailyWeather}
             />
           </div>
         </div>
