@@ -118,8 +118,11 @@ export interface MainContextProps {
 // Helpers
 
 export interface WorldCity {
-  city_id: string;
+  city_id: number;
   city_name: string;
+  state_code: string;
   country_code: string;
   country_full: string;
+  lat: number;
+  lon: number;
 }

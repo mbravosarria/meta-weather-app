@@ -28,7 +28,7 @@ function MenuSearchPlace({ setSearching }: MenuSearchPlaceProps) {
             {cities.map((item: WorldCity) => (
               <SearchItem
                 key={item.city_id}
-                code={item.city_id}
+                code={item.city_id.toString()}
                 text={`${item.city_name}, ${item.country_code}`}
                 {...{ setSearching }}
               />
