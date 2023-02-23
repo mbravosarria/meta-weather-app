@@ -13,7 +13,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <CityProvider>
         <UnitProvider>
           <Component {...pageProps} />
-          <ReactQueryDevtools initialIsOpen={false} />
         </UnitProvider>
       </CityProvider>
     </QueryClientProvider>
