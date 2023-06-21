@@ -10,13 +10,13 @@ function TodayHighlights({ loading, data }: TodayHighlightsProps) {
   const { unit } = useUnit();
 
   return (
-    <div className="flex flex-col space-y-3 xl:space-y-5">
+    <div className="flex flex-col space-y-3 mt-16">
       <P className="text-xl font-bold xl:text-2xl">Today&apos;s Highlights</P>
-      <div className="flex flex-col justify-between space-y-3 lg:flex-row lg:space-y-0">
+      <div className="flex flex-col justify-between space-y-2 lg:flex-row lg:space-y-0">
         <WindStatus loading={loading} data={data} />
         <Humidity loading={loading} data={data} />
       </div>
-      <div className="flex flex-col justify-between space-y-3 lg:flex-row lg:space-y-0">
+      <div className="flex flex-col justify-between space-y-2 lg:flex-row lg:space-y-0">
         <CommonHighlightItem
           title="Visibility"
           value={data ? data[0].vis : "--"}

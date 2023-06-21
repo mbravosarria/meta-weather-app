@@ -6,7 +6,7 @@ import SkeletonMui from "../Atoms/SkeletonMui";
 
 function Humidity({ loading, data }: HumidityProps) {
   return (
-    <div className="flex flex-col items-center space-y-2 bg-purple py-4 lg:w-[49%] xl:space-y-4">
+    <div className="flex flex-col items-center space-y-2 bg-purple py-4 lg:w-[49%]">
       {loading ? (
         <SkeletonMui variant="rectangular" width={140} height={35} />
       ) : (

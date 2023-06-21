@@ -10,7 +10,7 @@ function UnitSwitcher() {
       <Button
         className={`rounded-full ${
           unit == "" ? "bg-white text-purple-dark" : "bg-gray text-white"
-        } py-1 px-[0.7rem] text-lg shadow-lg`}
+        } py-1 px-[0.6rem] text-lg shadow-lg`}
         onClick={() => setUnit({ unit: "" })}
       >
         °C
@@ -18,7 +18,7 @@ function UnitSwitcher() {
       <Button
         className={`rounded-full ${
           unit == "I" ? "bg-white text-purple-dark" : "bg-gray text-white"
-        } py-1 px-[0.7rem] text-lg shadow-lg`}
+        } py-1 px-[0.6rem] text-lg shadow-lg`}
         onClick={() => setUnit({ unit: "I" })}
       >
         °F

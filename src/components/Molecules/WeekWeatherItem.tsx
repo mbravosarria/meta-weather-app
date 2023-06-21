@@ -20,10 +20,10 @@ function WeekWeatherItem({ loading, data }: WeekWeatherItemProps) {
         </P>
       )}
       {loading ? (
-        <SkeletonMui variant="circular" width={80} height={80} />
+        <SkeletonMui variant="circular" width={60} height={60} />
       ) : (
         <Img
-          className="relative h-20 w-20"
+          className="relative h-14 w-14"
           src={data ? `/icons/${data?.weather.icon}.png` : nodataIcon}
           alt="Weather Icon"
         />

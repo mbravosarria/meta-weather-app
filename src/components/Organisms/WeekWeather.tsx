@@ -14,7 +14,7 @@ function WeekWeather({ loading, data }: WeekWeatherProps) {
   };
 
   return (
-    <div className="flex flex-wrap justify-between px-5 lg:flex-row lg:px-0">
+    <div className="flex flex-wrap justify-between px-5 lg:flex-row lg:px-0 pb-4">
       {data &&
         weekData().map((item: any) => (
           <WeekWeatherItem

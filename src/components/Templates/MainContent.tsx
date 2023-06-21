@@ -21,9 +21,9 @@ function MainContent({
 }: MainContextProps) {
   return (
     <div className={acme.className}>
-      <div className="flex h-auto flex-col justify-between space-y-8 bg-purple-dark py-5 px-4 lg:h-screen lg:space-y-0 xl:py-10 xl:px-40">
+      <div className="flex flex-col justify-between space-y-8 bg-purple-dark py-5 px-4 lg:space-y-0 xl:px-14">
         <div
-          className={`flex flex-row ${
+          className={`flex flex-row mb-6 ${
             !todayLoading && !todayData ? "justify-between" : "justify-end"
           }`}
         >
@@ -45,7 +45,7 @@ function MainContent({
         </div>
         <WeekWeather loading={dailyLoading} data={dailyData} />
         <TodayHighlights loading={todayLoading} data={todayData} />
-        <P className="text-center text-gray">
+        <P className="text-center text-gray pt-2">
           created by <span className="text-white underline">mbravosarria</span>{" "}
           - devChallenges.io
         </P>

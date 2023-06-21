@@ -38,7 +38,7 @@ function Home() {
         <link rel="icon" href="/svg/nodata.svg" />
       </Head>
 
-      <main className="h-screen bg-purple-dark text-white">
+      <main className="bg-purple-dark text-white">
         <div className="flex flex-col lg:flex-row">
           <div className="lg:w-1/4">
             <Menu loading={currentWeatherIsLoading} data={currentWeather} />

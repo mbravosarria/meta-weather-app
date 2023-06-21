@@ -10,7 +10,7 @@ function WindStatus({ loading, data }: WindStatusProps) {
   const { unit } = useUnit();
 
   return (
-    <div className="flex flex-col items-center space-y-3 bg-purple py-4 lg:w-[49%]">
+    <div className="flex flex-col items-center space-y-2 bg-purple py-4 lg:w-[49%]">
       {loading ? (
         <SkeletonMui variant="rectangular" width={140} height={35} />
       ) : (
